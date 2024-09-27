@@ -1,4 +1,4 @@
-package com.back.producttrialmaster.enumeration;
+package com.back.producttrial.enumeration;
 
 public enum InventoryReference {
     INSTOCK,

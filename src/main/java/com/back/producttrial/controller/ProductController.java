@@ -1,7 +1,7 @@
-package com.back.producttrialmaster.controller;
+package com.back.producttrial.controller;
 
-import com.back.producttrialmaster.dto.ProductDTO;
-import com.back.producttrialmaster.service.ProductService;
+import com.back.producttrial.dto.ProductDTO;
+import com.back.producttrial.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

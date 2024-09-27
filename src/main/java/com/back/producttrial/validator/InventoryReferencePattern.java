@@ -1,4 +1,4 @@
-package com.back.producttrialmaster.validator;
+package com.back.producttrial.validator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

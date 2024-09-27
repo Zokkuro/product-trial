@@ -1,9 +1,9 @@
-package com.back.producttrialmaster;
+package com.back.producttrial;
 
-import com.back.producttrialmaster.controller.ProductController;
-import com.back.producttrialmaster.mapper.ProductMapper;
-import com.back.producttrialmaster.repository.ProductRepository;
-import com.back.producttrialmaster.service.ProductService;
+import com.back.producttrial.controller.ProductController;
+import com.back.producttrial.mapper.ProductMapper;
+import com.back.producttrial.repository.ProductRepository;
+import com.back.producttrial.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

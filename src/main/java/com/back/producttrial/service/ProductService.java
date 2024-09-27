@@ -1,9 +1,9 @@
-package com.back.producttrialmaster.service;
+package com.back.producttrial.service;
 
-import com.back.producttrialmaster.dto.ProductDTO;
-import com.back.producttrialmaster.mapper.ProductMapper;
-import com.back.producttrialmaster.repository.ProductRepository;
-import com.back.producttrialmaster.repository.entity.Product;
+import com.back.producttrial.dto.ProductDTO;
+import com.back.producttrial.mapper.ProductMapper;
+import com.back.producttrial.repository.ProductRepository;
+import com.back.producttrial.repository.entity.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.back.producttrialmaster.controller;
+package com.back.producttrial.controller;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

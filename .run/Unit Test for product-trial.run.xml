@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Unit Test for product-trial-master" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-    <module name="product-trial-master" />
+  <configuration default="false" name="All in product-trial" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="product-trial" />
     <option name="PACKAGE_NAME" value="" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />

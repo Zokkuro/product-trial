@@ -1,6 +1,6 @@
-package com.back.producttrialmaster.repository;
+package com.back.producttrial.repository;
 
-import com.back.producttrialmaster.repository.entity.Product;
+import com.back.producttrial.repository.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

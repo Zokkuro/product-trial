@@ -1,6 +1,6 @@
-package com.back.producttrialmaster.validator;
+package com.back.producttrial.validator;
 
-import com.back.producttrialmaster.enumeration.InventoryReference;
+import com.back.producttrial.enumeration.InventoryReference;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;

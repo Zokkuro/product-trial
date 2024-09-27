@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>com.back</groupId>
-	<artifactId>product-trial-master</artifactId>
+	<artifactId>product-trial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product-trial-master</name>
-	<description>Site E-commerce product-trial-master</description>
+	<name>product-trial</name>
+	<description>Site E-commerce product-trial</description>
 	<url/>
 
 	<properties>

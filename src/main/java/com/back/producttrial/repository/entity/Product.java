@@ -1,6 +1,6 @@
-package com.back.producttrialmaster.repository.entity;
+package com.back.producttrial.repository.entity;
 
-import com.back.producttrialmaster.enumeration.InventoryReference;
+import com.back.producttrial.enumeration.InventoryReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
-package com.back.producttrialmaster.dto;
+package com.back.producttrial.dto;
 
-import com.back.producttrialmaster.enumeration.InventoryReference;
-import com.back.producttrialmaster.validator.InventoryReferencePattern;
+import com.back.producttrial.enumeration.InventoryReference;
+import com.back.producttrial.validator.InventoryReferencePattern;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
