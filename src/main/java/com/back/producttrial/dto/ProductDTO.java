@@ -2,17 +2,16 @@ package com.back.producttrial.dto;
 
 import com.back.producttrial.enumeration.InventoryReference;
 import com.back.producttrial.validator.InventoryReferencePattern;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 public class ProductDTO {
 
     public interface OnPost{}
@@ -60,13 +59,15 @@ public class ProductDTO {
     private Integer rating;
 
     @NotNull(groups = OnPost.class)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(description = "Date de création du produit", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     @NotNull(groups = OnPatch.class)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(description = "Date de dernière mise à jour du produit", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedAt;
 
     public InventoryReference getInventoryReference() {

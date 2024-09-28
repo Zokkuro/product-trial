@@ -1,4 +1,4 @@
-package com.back.producttrial.repository.entity;
+package com.back.producttrial.entity;
 
 import com.back.producttrial.enumeration.InventoryReference;
 import jakarta.persistence.*;

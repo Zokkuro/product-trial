@@ -1,7 +1,7 @@
 package com.back.producttrial.mapper;
 
 import com.back.producttrial.dto.ProductDTO;
-import com.back.producttrial.repository.entity.Product;
+import com.back.producttrial.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
