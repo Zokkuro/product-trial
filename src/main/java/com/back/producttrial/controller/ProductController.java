@@ -30,13 +30,13 @@ public class ProductController {
     @GetMapping("/products/{id}")
     ResponseEntity<ProductDTO> getProduct(@PathVariable("id") long productId) {
         ProductDTO result = productService.getProduct(productId);
-        return result !=null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
+        return result != null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
     }
 
     @PatchMapping("/products/{id}")
     ResponseEntity<ProductDTO> updateProduct(@PathVariable("id") long productId, @RequestBody @Validated(ProductDTO.OnPatch.class) ProductDTO product) {
         ProductDTO result = productService.updateProduct(productId, product);
-        return result !=null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
+        return result != null ? ResponseEntity.ok(result) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/products/{id}")
