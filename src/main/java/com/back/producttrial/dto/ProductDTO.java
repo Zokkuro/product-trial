@@ -65,13 +65,13 @@ public class ProductDTO {
     private Integer rating;
 
     @NotNull(groups = OnPost.class)
-    @Schema(description = "Date de création du produit", pattern = "yyyy-MM-dd HH:mm:ss")
+    @Schema(description = "Date de création du produit", pattern = "yyyy-MM-dd HH:mm:ss", example = "2024-09-28 11:20:21")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     @NotNull(groups = OnPatch.class)
-    @Schema(description = "Date de dernière mise à jour du produit", pattern = "yyyy-MM-dd HH:mm:ss")
+    @Schema(description = "Date de dernière mise à jour du produit", pattern = "yyyy-MM-dd HH:mm:ss", example = "2024-09-28 11:20:21")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedAt;
