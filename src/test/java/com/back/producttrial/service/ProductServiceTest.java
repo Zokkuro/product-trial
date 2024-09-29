@@ -36,20 +36,13 @@ public class ProductServiceTest extends CommonTest {
     @Test
     public void getProducts() {
 
-        //GIVEN
-        Product product1 = new Product();
-        product1.setId(1L);
-        Product product2 = new Product();
-        product2.setId(2L);
-
         //WHEN
-        when(productRepository.findAll()).thenReturn(Arrays.asList(product1, product2));
-        when(productMapper.toDTO(product1)).thenReturn(productDto1);
-        when(productMapper.toDTO(product2)).thenReturn(productDto2);
+        when(productRepository.findAll()).thenReturn(Collections.singletonList(product));
+        when(productMapper.toDTO(product)).thenReturn(productDTO);
 
         //THEN
         List<ProductDTO> result = productService.getAllProducts();
-        assertEquals(Arrays.asList(productDto1,productDto2), result);
+        assertEquals(Collections.singletonList(productDTO), result);
     }
 
     @Test
@@ -68,11 +61,11 @@ public class ProductServiceTest extends CommonTest {
 
         //WHEN
         when(productRepository.findById(1L)).thenReturn(Optional.of(new Product()));
-        when(productMapper.toDTO(any(Product.class))).thenReturn(productDto1);
+        when(productMapper.toDTO(any(Product.class))).thenReturn(productDTO);
 
         //THEN
         ProductDTO result = productService.getProduct(1L);
-        assertEquals(productDto1, result);
+        assertEquals(productDTO, result);
     }
 
     @Test
@@ -80,10 +73,10 @@ public class ProductServiceTest extends CommonTest {
 
         //WHEN
         when(productRepository.findById(1L)).thenReturn(Optional.of(new Product()));
-        when(productMapper.toEntity(productDto2)).thenReturn(new Product());
+        when(productMapper.toEntity(productDTO)).thenReturn(new Product());
 
         //THEN
-        productService.updateProduct(1L, productDto2);
+        productService.updateProduct(1L, productDTO);
         verify(productMapper).update(any(Product.class), any(Product.class));
     }
 
@@ -95,7 +88,7 @@ public class ProductServiceTest extends CommonTest {
         when(productMapper.toDTO(any(Product.class))).thenReturn(null);
 
         //THEN
-        productService.updateProduct(1L, productDto2);
+        productService.updateProduct(1L, productDTO);
         verify(productMapper, times(0)).update(any(Product.class), any(Product.class));
     }
 
@@ -107,11 +100,11 @@ public class ProductServiceTest extends CommonTest {
         product1.setId(1L);
 
         //WHEN
-        when(productMapper.toEntity(productDto1)).thenReturn(new Product());
+        when(productMapper.toEntity(productDTO)).thenReturn(new Product());
         when(productRepository.save(any(Product.class))).thenReturn(product1);
 
         //THEN
-        Long result = productService.addProduct(productDto1);
+        Long result = productService.addProduct(productDTO);
         assertEquals(1L, result);
     }
 

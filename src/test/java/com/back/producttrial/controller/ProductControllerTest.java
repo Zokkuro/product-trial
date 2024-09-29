@@ -36,7 +36,7 @@ public class ProductControllerTest extends CommonTest {
     public void getProducts() throws Exception
     {
         //GIVEN
-        List<ProductDTO> products = Collections.singletonList(productDto1);
+        List<ProductDTO> products = Collections.singletonList(productDTO);
 
         //WHEN
         when(productService.getAllProducts()).thenReturn(products);
@@ -55,13 +55,13 @@ public class ProductControllerTest extends CommonTest {
     public void getProductById_Ok() throws Exception
     {
         //WHEN
-        when(productService.getProduct(anyLong())).thenReturn(productDto1);
+        when(productService.getProduct(anyLong())).thenReturn(productDTO);
 
         //THEN
         mvc.perform(MockMvcRequestBuilders
                         .get("/products/1")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(objectMapper.writeValueAsString(productDto1)))
+                .andExpect(content().string(objectMapper.writeValueAsString(productDTO)))
                 .andExpect(status().isOk());
 
         verify(productService).getProduct(1L);
@@ -86,17 +86,17 @@ public class ProductControllerTest extends CommonTest {
     public void updateProduct_Ok() throws Exception
     {
         //WHEN
-        when(productService.updateProduct(anyLong(),any(ProductDTO.class))).thenReturn(productDto2);
+        when(productService.updateProduct(anyLong(),any(ProductDTO.class))).thenReturn(productDTO);
 
         //THEN
         mvc.perform(MockMvcRequestBuilders
                         .patch("/products/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productDto2))
+                        .content(objectMapper.writeValueAsString(productDTO))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(productService).updateProduct(1L, productDto2);
+        verify(productService).updateProduct(1L, productDTO);
     }
 
     @Test
@@ -109,11 +109,11 @@ public class ProductControllerTest extends CommonTest {
         mvc.perform(MockMvcRequestBuilders
                         .patch("/products/2")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productDto2))
+                        .content(objectMapper.writeValueAsString(productDTO))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
 
-        verify(productService).updateProduct(2L, productDto2);
+        verify(productService).updateProduct(2L, productDTO);
     }
 
     @Test
@@ -126,11 +126,11 @@ public class ProductControllerTest extends CommonTest {
         mvc.perform(MockMvcRequestBuilders
                         .post("/products")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productDto1))
+                        .content(objectMapper.writeValueAsString(productDTO))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(productService).addProduct(productDto1);
+        verify(productService).addProduct(productDTO);
     }
 
     @Test
@@ -143,5 +143,57 @@ public class ProductControllerTest extends CommonTest {
                 .andExpect(status().isOk());
 
         verify(productService).deleteProduct(anyLong());
+    }
+
+    @Test
+    public void postProduct_BadRequest_RatingMax() throws Exception
+    {
+        //GIVEN
+        productDTO.setRating(10);
+
+        //THEN
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(productDTO))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("{\"rating\":\"must be less than or equal to 5\"}"));
+
+        verify(productService, times(0)).addProduct(productDTO);
+    }
+
+    @Test
+    public void postProduct_BadRequest_InventoryReference() throws Exception
+    {
+        //GIVEN
+        String jsonRequest = objectMapper.writeValueAsString(productDTO).replace("INSTOCK", "BADVALUE");
+
+        //THEN
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        verify(productService, times(0)).addProduct(productDTO);
+    }
+
+    @Test
+    public void postProduct_BadRequest_TypeOfValue() throws Exception
+    {
+        //GIVEN
+        String jsonRequest = objectMapper.writeValueAsString(productDTO).replace("5", "\"test\"");
+
+        //THEN
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        verify(productService, times(0)).addProduct(productDTO);
     }
 }

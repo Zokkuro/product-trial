@@ -2,6 +2,7 @@ package com.back.producttrial.entity;
 
 import com.back.producttrial.enumeration.InventoryReference;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Setter
 @Getter
+@EqualsAndHashCode
 @Table(name = "PRODUCT")
 public class Product {
 
