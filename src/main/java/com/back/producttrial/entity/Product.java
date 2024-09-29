@@ -2,17 +2,12 @@ package com.back.producttrial.entity;
 
 import com.back.producttrial.enumeration.InventoryReference;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
-@Setter
-@Getter
-@EqualsAndHashCode
+@Data
 @Table(name = "PRODUCT")
 public class Product {
 
@@ -31,6 +26,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private InventoryReference inventoryReference;
     private Integer rating;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private OffsetDateTime  createdAt;
+    private OffsetDateTime updatedAt;
 }

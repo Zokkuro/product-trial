@@ -9,10 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder(toBuilder = true)
@@ -37,7 +35,7 @@ public class ProductDTO {
     @Schema(description = "Description du produit" , example = "Voici le nouvelle IPhone")
     private String description;
 
-    @Schema(description = "Url de l'image lié au produit")
+    @Schema(description = "Uri de l'image lié au produit", example = "Image URI")
     private String image;
 
     @NotBlank(groups = OnPost.class)
@@ -51,7 +49,7 @@ public class ProductDTO {
     @Schema(description = "Référence interne du produit", example = "INTERNAL-0001")
     private String internalReference;
 
-    @Schema(description = "Identifiant shell du produit")
+    @Schema(description = "Identifiant shell du produit", example = "1")
     private Long shellId;
 
     @NotNull(groups = OnPost.class)
@@ -65,16 +63,14 @@ public class ProductDTO {
     private Integer rating;
 
     @NotNull(groups = OnPost.class)
-    @Schema(description = "Date de création du produit", pattern = "yyyy-MM-dd HH:mm:ss", example = "2024-09-28 11:20:21")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+    @Schema(description = "Date de création du produit", pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    private OffsetDateTime createdAt;
 
     @NotNull(groups = OnPatch.class)
-    @Schema(description = "Date de dernière mise à jour du produit", pattern = "yyyy-MM-dd HH:mm:ss", example = "2024-09-28 11:20:21")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updatedAt;
+    @Schema(description = "Date de dernière mise à jour du produit", pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    private OffsetDateTime updatedAt;
 
     public InventoryReference getInventoryReference() {
         return InventoryReference.valueOf(inventoryReference);

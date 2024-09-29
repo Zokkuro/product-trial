@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 
 public abstract class CommonTest {
@@ -48,7 +48,7 @@ public abstract class CommonTest {
         product.setShellId(1L);
         product.setInventoryReference(InventoryReference.INSTOCK);
         product.setRating(5);
-        product.setCreatedAt(LocalDateTime.of(2024,9,28,11,20,21));
-        product.setUpdatedAt(LocalDateTime.of(2024,9,28,11,20,21));
+        product.setCreatedAt(OffsetDateTime.parse("2024-09-29T11:29:33.464Z"));
+        product.setUpdatedAt(OffsetDateTime.parse("2024-09-29T11:29:33.464Z"));
     }
 }
